@@ -1,0 +1,14 @@
+Inicio
+Generar 2 páginas iniciales que tengan los mismos contenidos más no se relacionen entre sí
+pag_one = "Página Personal"
+pag_two = "Página Académica"
+
+interfaz_o = interfaz con 4 elementos principales:
+                * Calendario
+                * Lista de Tareas
+                * Lista de Hábitos
+                * 
+
+
+Si usuario selecciona "Página Personal"
+  Mostrar interfaz_o
