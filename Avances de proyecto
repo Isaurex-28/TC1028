@@ -1,3 +1,5 @@
+#AVANCE 1
+
 Inicio
 Generar 2 páginas iniciales que tengan contenidos parecidos más no se relacionen entre sí
 pag_one = "Página Personal"
@@ -66,4 +68,41 @@ else:
 
 #AVANCE 3
 
-def 
+import datetime
+
+#Utilizable por tarea/proyecto
+
+def date_calc(due):
+  date = datetime.date.now().date()
+  if due < date:
+    return("Atraso")
+  elif due_date == date:
+    return("Hoy")
+  else:
+    return(due - date ,"días")
+
+print("Seleccióna fecha de entrega")
+due_date = datetime.date(int(input("Año: "),int(input("Mes: "),int(input("Día: "))
+
+print(date_calc(due_date))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
