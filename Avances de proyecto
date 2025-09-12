@@ -131,6 +131,25 @@ print(r,g,b)
 
 
   
+AVANCE 4
+
+"""Selección de página"""
+
+option = input("Tareas o Habitos")
+
+if option == Tareas:
+  print("Menú seleccionado" , "Crear nueva tarea?")
+  task = input("Si / No")
+  if task == Si:
+    print("Seleccióna fecha de entrega")
+    due_date = datetime.date(int(input("Año: "),int(input("Mes: "),int(input("Día: "))
+    print("Selección de prioridad")
+    priority = input("Prioridad del 1 al 5")
+    task_one = due_date , priority
+  if task == No:
+    print("Seleccionar tarea a mostrar")
+    
+    
 
 
 
