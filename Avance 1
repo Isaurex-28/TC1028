@@ -1,1 +1,26 @@
+#AVANCE 1
 
+Inicio
+Generar 2 páginas iniciales que tengan contenidos parecidos más no se relacionen entre sí
+pag_one = "Página Personal"
+pag_two = "Página Académica"
+
+interfaz_o = interfaz con 3 elementos principales:
+                * Calendario
+                * Lista de Tareas
+                * Menú de Proyectos
+
+interfaz_t = interfaz con 3 elementos principales:
+                * Calendario
+                * Lista de Hábitos
+                * Menú de Proyectos
+
+calendar = Función que obtenga la información de fecha y hora del dispositivo y agregue las tareas correspondientes a tal fecha y hora
+hw_list = Menú desplegable que permita crear tareas (con título, materia, tipo, prioridad, fecha de entrega, y descripción) y visualizarlos posteriormente
+hb_list = Menú desplegable que permita crear hábitos (con nombre, y frecuencia meta) y administrar si para el dia de hoy se realizó el hábito o su contaparte
+project = Menú deplegabble que permita crear proyectos con sus propias tareas (con propiedades igual es al de la lista de tareas) y agregar un progreso modificable establecido por el usuario
+
+Si usuario selecciona "Página Personal"
+  Mostrar interfaz_o
+Si usuario selecciona "Página Académica"
+  Mostrar interfaz_t
