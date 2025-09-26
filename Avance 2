@@ -1,0 +1,17 @@
+#AVANCE 2
+
+#Código calculador de fechas
+
+import datetime
+
+date = datetime.date.now().date()
+
+print("Seleccióna fecha de entrega")
+due_date = datetime.date(int(input("Año: ")),int(input("Mes: ")),int(input("Día: ")))
+
+if due_date < date:
+  print("Entrega Atrasada")
+elif due_date == date:
+  print("Se entrega hoy")
+else:
+  print("Entrega a tiempo")
