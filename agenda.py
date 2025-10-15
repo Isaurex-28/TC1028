@@ -1,4 +1,4 @@
-#AVANCE 6
+#AVANCE 7
 
 #importar librerias
 import datetime
@@ -9,115 +9,144 @@ habits = []
 
 
 #Funciones para crear una tarea
-def task_name():
-    name = input("Nombre de tu tarea: ")
-    return name
+def task_name(dictionary):
+    name = input("\nNombre de tu tarea: ")
+    dictionary["name"] = name
+    return dictionary
 
-def task_date():
-    print("Selecciona fecha de entrega")
-    day = int(input("Día: "))
-    month = int(input("Mes: "))
-    year = int(input("Año: "))
+def task_date(dictionary):
+    print("\nSelecciona fecha de entrega")
+    day = int(input("Día (DD): "))
+    month = int(input("Mes (MM): "))
+    year = int(input("Año (YYYY): "))
     due_date = datetime.date(year,month,day)
-    return due_date
+    dictionary["due_date"] = due_date
+    return dictionary
 
-def task_priority():
-    print("Selección de prioridad")
-    priority = 0
-    while (priority < 1) or (priority > 5):
-        priority = int(input("Prioridad del 1 al 5: "))
-        if (priority < 1) or (priority > 5):
-            print("La prioridad tiene que ser un número del 1 al 5")
-    return priority
+def task_priority(dictionary):
+    print("\nSelección de prioridad")
+    priorities = ["1","2","3","4","5"]
+    priority = input("Prioridad del 1 al 5: ")
+    while priority not in priorities:
+        print("La prioridad tiene que ser un número del 1 al 5")
+        priority = input("Prioridad del 1 al 5: ")
+    dictionary["priority"] = priority
+    return dictionary
 
-def task_create():
-    #Creo un diccionario para cada tarea
-    new_task = {}
-    new_task["name"] = task_name()
-    new_task["due_date"] = task_date()
-    new_task["priority"] = task_priority()
+def task_status(task):
+    today = datetime.date.today()
+    if task["due_date"]<today:
+        status = "Atrasado"
+    else:
+        status = "En Tiempo"
+    return status
 
-    return(new_task)
+def task_create(dictionary):
+    task_name(dictionary)
+    task_date(dictionary)
+    task_priority(dictionary)
+    return dictionary
 
 
 #Funciones para crear un habito
-def habit_name():
-    name = input("Nombre de tu habito: ")
-    return name
+def habit_name(dictionary):
+    name = input("\nNombre de tu habito: ")
+    dictionary["name"] = name
+    return dictionary
 
-def habit_priority():
-    print("Selección de prioridad")
-    priority = 0
-    while (priority < 1) or (priority > 5):
-        priority = int(input("Prioridad del 1 al 5: "))
-        if (priority < 1) or (priority > 5):
-            print("La prioridad tiene que ser un número del 1 al 5")
-    return priority    
+def habit_priority(dictionary):
+    print("\nSelección de prioridad")
+    priorities = ["1","2","3","4","5"]
+    priority = input("Prioridad del 1 al 5: ")
+    while priority not in priorities:
+        print("La prioridad tiene que ser un número del 1 al 5")
+        priority = input("Prioridad del 1 al 5: ")
+    dictionary["priority"] = priority
+    return dictionary
 
-def habit_create():
-    #Creo un diccionario para cad habitp
-    new_habit = {}
-    new_habit["name"] = habit_name()
-    new_habit["priority"] = habit_priority()
-    return(new_habit)
+def habit_create(dictionary):
+    habit_name(dictionary)
+    habit_priority(dictionary)
+    return dictionary
 
 #Declarar variables
-corre = True
+run = True
 
 
-while corre == True:
+while run:
     
     #Selección de Menu
-    print("Selecciona el Menú")
-    option = input("1.- Tareas \n2.- Habitos \n3.- Salir \nEscribe 1 2 o 3: ")
+    print("\nSelecciona el Menú")
+    option = input("1.- Tareas \n2.- Hábitos \n3.- Salir \nEscribe 1 2 o 3: ")
     
     #Acciones según el menu
     if option == "1":
-        print("Menú seleccionado" , "¿Crear nueva tarea?")
-        create_task = input("Si / No ")
-        if create_task == "Si":
-             #Ciclo while que permite crear varias tareas seguidas
-             while create_task == "Si":
-                new_task = task_create()
-                #Se agrega el diccionario completo a la lista tasks
-                tasks.append(new_task)
-                print("Tarea creada: ",new_task)
-                create_task=input("Deseas crear otra tarea?? (Si / No):")
-        elif create_task == "No":
-            print("¿Mostrar tareas creadas?")
-            show_task=input("Si / No ")
-            if show_task == "Si":
-                #Se evalua si hay tareas por mostrar
-                if len(tasks) > 0:
-                    print("Tareas:")
-                    for task in tasks:
-                        #Se imprime cada diccionario, de cada tarea por separado
-                        print("Nombre:",task["name"], " Prioridad:",task["priority"], " Fecha de entrega:",task["due_date"])
-                else:
-                    print("No hay tareas por mostrar")
+        task_run=True
+        while task_run:
+            print("\nAcción a realizar")
+            task_option = input("1.- Crear Tarea \n2.- Mostrar Tareas \n3.- Salir \nEscribe 1 2 o 3: ")
+            if task_option == "1":
+                create_task="1"
+                #Ciclo while que permite crear varias tareas seguidas
+                while create_task == "1":
+                    new_task = {}
+                    new_task = task_create(new_task)
+                    #Se agrega el diccionario completo a la lista tasks
+                    tasks.append(new_task)
+                    print("\nTarea creada: ","\nNombre: ",new_task["name"],"\nPrioridad: ",new_task["priority"],"\nFecha de Entrega: ",new_task["due_date"])
+                    create_task=input("\n¿Deseas crear otra tarea? \n1.- Sí \n2.- No \n(Escribe el número): ")
+
+            elif task_option == "2":
+                    #Se evalua si hay tareas por mostrar
+                    if len(tasks) > 0:
+                        print("Tareas:")
+                        for task in tasks:
+                            #Se imprime cada diccionario y estatus de cada tarea, por separado
+                            print("\nNombre:",task["name"], 
+                                "\nPrioridad:",task["priority"], 
+                                "\nFecha de entrega:",task["due_date"],
+                                "\nEstatus: ",task_status(task))
+                    else:
+                        print("No hay tareas por mostrar")
+            elif task_option == "3":
+                break
+
+            else:
+                print("Entrada no válida")
+
 
     elif option == "2":
-        print("Menú seleccionado" , "Crear nuevo habito?")
-        create_habit = input("Si / No ")
-        if create_habit == "Si":
-            while create_habit == "Si":
-                new_habit = habit_create()
-                habits.append(new_habit)
-                print("Habito creado",new_habit)
-                create_habit=input("Crear otro habito (Si / No): ")
-        elif create_habit == "No":
-            print("¿Mostras habitos creados?")
-            show_habit = input("Si / No")
-            if show_habit == "Si":
-                if len(habits)>0:
-                    print("Habitos: ")
-                    for habit in habits:
-                        print("Nombre:",habit["name"]," Prioridad:",habit["priority"]," Fecha de entrega:",habit["due_date"])
-                else:
-                    print("No hay habitos por mostrar")
+        habit_run = True
+        while habit_run:
+            print("\nAcción a realizar")
+            habit_option = input("1.- Crear Hábito \n2.- Mostrar Hábitos \n3.- Salir \nEscribe 1 2 o 3: ")
+
+            if habit_option == "1":
+                create_habit = "1"
+                while create_habit == "1":
+                    new_habit = {}
+                    new_habit = habit_create(new_habit)
+                    habits.append(new_habit)
+                    print("\nHábito creado: ","\nNombre: ",new_habit["name"],"\nPrioridad: ",new_habit["priority"])
+                    create_habit=input("\n¿Deseas crear otro hábito? \n1.- Sí \n2.- No \n(Escribe el número): ")
+
+            elif habit_option == "2":
+                    if len(habits)>0:
+                        print("Habitos: ")
+                        for habit in habits:
+                            print("Nombre:",habit["name"]," Prioridad:",habit["priority"],)
+                    else:
+                        print("No hay hábitos por mostrar")
+
+            elif habit_option == "3":
+                break
+
+            else:
+                print("Entrada no válida")
+
 
     elif option == "3":
         print("Agenda cerrada")
         break
     else:
-        print("Entrada no valida, escribe 1 2 o 3")da, escribe 1 2 o 3")
+        print("Entrada no válida, escribe 1 2 o 3")
