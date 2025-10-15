@@ -1,63 +1,40 @@
-#AVANCE 3
+#AVANCE 4
 
-#Importo biblioteca de tiempo
-import datetime
+#Selección de página
 
-#Utilizable por tarea/proyecto
+option = input("Tareas o Habitos ")
 
-def date_calc(due):
-  date = datetime.date.now().date()
-  if due < date:
-    return("Atraso")
-  elif due_date == date:
-    return("Hoy")
-  else:
-    return(due - date ,"días")
+def task_create():
+  name = input("Nombre de tu tarea: ")
+  print("Selecciona fecha de entrega")
+  day = int(input("Día: "))
+  month = int(input("Mes: "))
+  year = int(input("Año: "))
+  due_date = datetime.date(year,month,day)
+  print("Selección de prioridad")
+  priority = input("Prioridad del 1 al 5 ")
+  task_one = name, due_date , priority
+  return(task_one)
 
-print("Seleccióna fecha de entrega")
-due_date = datetime.date(int(input("Año: "),int(input("Mes: "),int(input("Día: "))
+def habit_create():
+  name = input("Nombre de tu habito: ")
+  print("Selección de prioridad")
+  priority = input("Prioridad del 1 al 5 ")
+  habit_one = name , priority
+  return(habit_one)
 
-print(date_calc(due_date))
-
-
-
-# Utilizable con los habitos
-
-def hab_count(habit,days):
-  if habit == "Sí":
-    return days + 1
-  elif habit == "No":
-    days = 0  
-    return days
-  else:
-    return "Asegúrate de escribir Sí o No tal cual está escrito en la pregunta"
-
-habit = input("¿Cumpliste con tu hábito? (Sí o No)")
-count = 0
-count = hab_count(habit,count)
-
-print(count)
-
-
-
-#Utilizable con las tareas (color segun su prioridad)
-
-def red(priority):
-  if priority >= 3:
-    return 255
-  else:
-    return 102
-
-def green(priority):
-  if priority <= 3:
-    return 255
-  else:
-    return 102
-
-priority = int(input("Prioridad del 1 al 5 "))
-
-r = red(priority)
-g = green(priority)
-b = 102
-
-print(r,g,b)
+if option == "Tareas":
+  print("Menú seleccionado" , "Crear nueva tarea?")
+  task = input("Si / No ")
+    if task == "Si":
+      print("Tarea creada: ",task_create())
+    elif task == "No":
+      print("No hay tareas por mostrar")
+elif option == "Habitos":
+  print("Menú seleccionado" , "Crear nuevo habito?")
+  habit = input("Si / No ")
+    if habit == "Si":
+      print("Habito creado",habit_create())
+    elif habit == "No":
+      print("No hay habitos por mostrar")
+    
