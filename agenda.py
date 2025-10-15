@@ -1,40 +1,86 @@
-#AVANCE 4
+#AVANCE 5
 
-#Selección de página
+#importar librerias
+import datetime
 
-option = input("Tareas o Habitos ")
+#Funciones para crear una tarea
+def task_name():
+    name = input("Nombre de tu tarea: ")
+    return name
+
+def task_date():
+    print("Selecciona fecha de entrega")
+    day = int(input("Día: "))
+    month = int(input("Mes: "))
+    year = int(input("Año: "))
+    due_date = datetime.date(year,month,day)
+    return due_date
+
+def task_priority():
+    print("Selección de prioridad")
+    priority = 0
+    while (priority < 1) or (priority > 5):
+        priority = int(input("Prioridad del 1 al 5: "))
+        if (priority < 1) or (priority > 5):
+            print("La prioridad tiene que ser un número del 1 al 5")
+    return priority
 
 def task_create():
-  name = input("Nombre de tu tarea: ")
-  print("Selecciona fecha de entrega")
-  day = int(input("Día: "))
-  month = int(input("Mes: "))
-  year = int(input("Año: "))
-  due_date = datetime.date(year,month,day)
-  print("Selección de prioridad")
-  priority = input("Prioridad del 1 al 5 ")
-  task_one = name, due_date , priority
-  return(task_one)
+    name = task_name()
+    due_date= task_date()
+    priority = task_priority()
+    task_one = name, due_date , priority
+    return(task_one)
+
+
+#Funciones para crear un habito
+def habit_name():
+    name = input("Nombre de tu habito: ")
+    return name
+
+def habit_priority():
+    print("Selección de prioridad")
+    priority = 0
+    while (priority < 1) or (priority > 5):
+        priority = int(input("Prioridad del 1 al 5: "))
+        if (priority < 1) or (priority > 5):
+            print("La prioridad tiene que ser un número del 1 al 5")
+    return priority    
+
 
 def habit_create():
-  name = input("Nombre de tu habito: ")
-  print("Selección de prioridad")
-  priority = input("Prioridad del 1 al 5 ")
-  habit_one = name , priority
-  return(habit_one)
+    name = habit_name()
+    priority = habit_priority()
+    habit_one = name , priority
+    return(habit_one)
 
-if option == "Tareas":
-  print("Menú seleccionado" , "Crear nueva tarea?")
-  task = input("Si / No ")
-    if task == "Si":
-      print("Tarea creada: ",task_create())
-    elif task == "No":
-      print("No hay tareas por mostrar")
-elif option == "Habitos":
-  print("Menú seleccionado" , "Crear nuevo habito?")
-  habit = input("Si / No ")
-    if habit == "Si":
-      print("Habito creado",habit_create())
-    elif habit == "No":
-      print("No hay habitos por mostrar")
+#Declarar variables
+corre = True
+
+
+while corre == True:
     
+    #Selección de Menu
+    print("Selecciona el Menú")
+    option = input("1.- Tareas \n2.- Habitos \n3.- Salir \nEscribe 1 2 o 3: ")
+    
+    #Acciones según el menu
+    if option == "1":
+        print("Menú seleccionado" , "Crear nueva tarea?")
+        task = input("Si / No ")
+        if task == "Si":
+            print("Tarea creada: ",task_create())
+        elif task == "No":
+            print("No hay tareas por mostrar")
+    elif option == "2":
+        print("Menú seleccionado" , "Crear nuevo habito?")
+        habit = input("Si / No ")
+        if habit == "Si":
+            print("Habito creado",habit_create())
+        elif habit == "No":
+            print("No hay habitos por mostrar")
+    elif option == "3":
+        print("Agenda cerrada")
+        break
+    else:
+        print("Entrada no valida, escribe 1 2 o 3")
