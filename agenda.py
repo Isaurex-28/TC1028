@@ -1,7 +1,12 @@
-#AVANCE 5
+#AVANCE 6
 
 #importar librerias
 import datetime
+
+#Se crean listas para ir almacenando las tareas y habitos
+tasks = []
+habits = []
+
 
 #Funciones para crear una tarea
 def task_name():
@@ -26,11 +31,13 @@ def task_priority():
     return priority
 
 def task_create():
-    name = task_name()
-    due_date= task_date()
-    priority = task_priority()
-    task_one = name, due_date , priority
-    return(task_one)
+    #Creo un diccionario para cada tarea
+    new_task = {}
+    new_task["name"] = task_name()
+    new_task["due_date"] = task_date()
+    new_task["priority"] = task_priority()
+
+    return(new_task)
 
 
 #Funciones para crear un habito
@@ -47,12 +54,12 @@ def habit_priority():
             print("La prioridad tiene que ser un número del 1 al 5")
     return priority    
 
-
 def habit_create():
-    name = habit_name()
-    priority = habit_priority()
-    habit_one = name , priority
-    return(habit_one)
+    #Creo un diccionario para cad habitp
+    new_habit = {}
+    new_habit["name"] = habit_name()
+    new_habit["priority"] = habit_priority()
+    return(new_habit)
 
 #Declarar variables
 corre = True
@@ -66,21 +73,51 @@ while corre == True:
     
     #Acciones según el menu
     if option == "1":
-        print("Menú seleccionado" , "Crear nueva tarea?")
-        task = input("Si / No ")
-        if task == "Si":
-            print("Tarea creada: ",task_create())
-        elif task == "No":
-            print("No hay tareas por mostrar")
+        print("Menú seleccionado" , "¿Crear nueva tarea?")
+        create_task = input("Si / No ")
+        if create_task == "Si":
+             #Ciclo while que permite crear varias tareas seguidas
+             while create_task == "Si":
+                new_task = task_create()
+                #Se agrega el diccionario completo a la lista tasks
+                tasks.append(new_task)
+                print("Tarea creada: ",new_task)
+                create_task=input("Deseas crear otra tarea?? (Si / No):")
+        elif create_task == "No":
+            print("¿Mostrar tareas creadas?")
+            show_task=input("Si / No ")
+            if show_task == "Si":
+                #Se evalua si hay tareas por mostrar
+                if len(tasks) > 0:
+                    print("Tareas:")
+                    for task in tasks:
+                        #Se imprime cada diccionario, de cada tarea por separado
+                        print("Nombre:",task["name"], " Prioridad:",task["priority"], " Fecha de entrega:",task["due_date"])
+                else:
+                    print("No hay tareas por mostrar")
+
     elif option == "2":
         print("Menú seleccionado" , "Crear nuevo habito?")
-        habit = input("Si / No ")
-        if habit == "Si":
-            print("Habito creado",habit_create())
-        elif habit == "No":
-            print("No hay habitos por mostrar")
+        create_habit = input("Si / No ")
+        if create_habit == "Si":
+            while create_habit == "Si":
+                new_habit = habit_create()
+                habits.append(new_habit)
+                print("Habito creado",new_habit)
+                create_habit=input("Crear otro habito (Si / No): ")
+        elif create_habit == "No":
+            print("¿Mostras habitos creados?")
+            show_habit = input("Si / No")
+            if show_habit == "Si":
+                if len(habits)>0:
+                    print("Habitos: ")
+                    for habit in habits:
+                        print("Nombre:",habit["name"]," Prioridad:",habit["priority"]," Fecha de entrega:",habit["due_date"])
+                else:
+                    print("No hay habitos por mostrar")
+
     elif option == "3":
         print("Agenda cerrada")
         break
     else:
-        print("Entrada no valida, escribe 1 2 o 3")
+        print("Entrada no valida, escribe 1 2 o 3")da, escribe 1 2 o 3")
