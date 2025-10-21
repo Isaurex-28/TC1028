@@ -10,34 +10,45 @@ Pensando en que podría utilizar los recursos aprendidos en clase, me dí a la t
 
 ## **Algoritmo en Pseudocódigo**
 
-Inicio
+**Inicio**
 
-Generar 2 páginas iniciales que tengan contenidos parecidos más no se relacionen entre sí
-pag_one = "Página de Tareas"
-pag_two = "Página de Habitos"
+Generar una interfaz inicial que funcione como menú para mostrar otras 2 interfaces principales
+"Interfaz de Tareas" e "Interfaz de Habitos"
 
-interfaz_o = interfaz con 3 elementos principales:
-                * Calendario
-                * Lista de Tareas
-                * Menú de Proyectos
+Interfaz de Tareas = interfaz con 3 elementos principales:
+                * Crear una tarea
+                * Ver las tareas creadas (si es que las hay)
+                * Salir de la interfaz (regresar al menú principal)
 
-interfaz_t = interfaz con 3 elementos principales:
-                * Calendario
-                * Lista de Hábitos
-                * Menú de Proyectos
+Interfaz de Hábitos = interfaz con 4 elementos principales:
+                * Crear un hábito
+                * Ver los hábitos creados
+                * Agregar días cumplidos a un habito
+                * Salir de la interfaz (regresar al menú principal)
 
-calendar = Función que obtenga la información de fecha y hora del dispositivo y agregue las tareas correspondientes a tal fecha y hora
 
-hw_list = Menú desplegable que permita crear tareas (con título, materia, tipo, prioridad, fecha de entrega, y descripción) y visualizarlos posteriormente
+Si usuario selecciona "Interfaz de Tareas"
+  Mostrar interfaz de Tareas
+  Si el usuario selecciona Crear una tarea
+    Correr una función para crear tareas
+  Si el usuario selecciona Mostrar Tareas
+    Si hay tareas por mostrar
+      Mostrar las tareas
+      
+Si usuario selecciona "Interfaz de Hábitos"
+  Mostrar Interfaz de Hábitos
+  Si el usuario selecciona Crear un hábito
+    Correr una función para crear hábitos
+  Si el usuario selecciona Mostrar Hábitos
+    Si hay hábitos por mostrar
+      Mostrar los hábitos
+  Si el usuario selecciona Modificar un hábito
+    Si hay hábitos por modificar
+      Correr una función para modificar hábitos
 
-hb_list = Menú desplegable que permita crear hábitos (con nombre, y frecuencia meta) y administrar si para el dia de hoy se realizó el hábito o su contaparte
-
-project = Menú deplegabble que permita crear proyectos con sus propias tareas (con propiedades igual es al de la lista de tareas) y agregar un progreso modificable establecido por el usuario
-
-Si usuario selecciona "Página Personal"
-  Mostrar interfaz_o
-Si usuario selecciona "Página Académica"
-  Mostrar interfaz_t
+Si el usuario selecciona "Salir" 
+  Terminar el programa
+  
 
 ## Librería datetime (Referencias al API)
 Mi programa utiliza la librería datetime de python, que permite insertar fechas con segundo, minuto, hora, día, mes y año exactos, dependiendo incluso de las zonas de uso horarias de la region en la que te encuentres.
