@@ -110,6 +110,9 @@ def task_create(dictionary):
     task_name(dictionary)
     task_date(dictionary)
     task_priority(dictionary)
+    print("\nTarea creada: ", "\nNombre: ", dictionary["name"],
+          "\nPrioridad: ", dictionary["priority"],
+          "\nFecha de Entrega: ", dictionary["due_date"])
     return dictionary
 
 
@@ -175,6 +178,24 @@ def habit_priority(dictionary):
     return dictionary
 
 
+def habit_mean(dictionary):
+    """
+    (uso de funciones, uso de matrices, uso de operadores aritméticos)
+    Recibe un diccionario, y utiliza la frecuencia de cada habito
+    para calcular cuantos habitos hay por día en promedio
+    devuelve:  el promedio de habitos por día
+    """
+    sum = 0
+    for habit in dictionary:
+        """
+        Se divide la frecuencia entre 7 para encontrar la probabilidad 
+        de que el hábito deba cumplirse ese día
+        """
+        probability = habit["frequency"] / 7
+        sum = sum + probability
+    return round(sum, 2)
+
+
 def habit_create(dictionary):
     """
     (uso de funciones)
@@ -185,7 +206,52 @@ def habit_create(dictionary):
     habit_priority(dictionary)
     habit_frequency(dictionary)
     dictionary["status"] = 0
+    print("\nHábito creado: ", "\nNombre: ", new_habit["name"],
+          "\nPrioridad: ", new_habit["priority"],
+          "\nFrecuencia meta:", new_habit["frequency"])
     return dictionary
+
+
+"""
+============= Funciones Auxiliares =========
+"""
+
+
+def habit_show(matrix):
+    """
+    (uso de funciones, uso de matrices)
+    Llama a una lista de diccionarios, e imprime cada diccionario
+    """
+    if len(matrix) > 0:
+
+        print("\nPromedio de hábitos por día: ",
+              habit_mean(matrix))
+        print("\nHabitos: ")
+
+        for habit in matrix:
+            print("\nNombre:", habit["name"],
+                  "\nPrioridad:", habit["priority"],
+                  "\nFrecuencia: ", habit["frequency"],
+                  "\nEstatus (días completados): ", habit["status"])
+    else:
+        print("No hay hábitos por mostrar")
+
+
+def task_show(matrix):
+    """
+    (uso de funciones, uso de matrices)
+    Llama a una lista de diccionarios, e imprime cada diccionario
+    """
+    if len(matrix) > 0:
+        print("Tareas:")
+
+        for task in matrix:
+            print("\nNombre:", task["name"],
+                  "\nPrioridad:", task["priority"],
+                  "\nFecha de entrega:", task["due_date"],
+                  "\nEstatus: ", task_status(task))
+    else:
+        print("No hay tareas por mostrar")
 
 
 """
@@ -206,31 +272,20 @@ while run:
                     \n3.- Salir \nEscribe 1 2 o 3: ")
 
             if task_option == "1":
-                create_task = "1"
 
+                create_task = "1"
                 while create_task == "1":
 
                     new_task = {}
                     new_task = task_create(new_task)
                     tasks.append(new_task)
-                    print("\nTarea creada: ", "\nNombre: ", new_task["name"],
-                          "\nPrioridad: ", new_task["priority"],
-                          "\nFecha de Entrega: ", new_task["due_date"])
+
                     create_task = input("\n¿Deseas crear otra tarea? \
                         \n1.- Sí \n2.- No \n(Escribe el número): ")
 
             elif task_option == "2":
+                task_show(tasks)
 
-                if len(tasks) > 0:
-                    print("Tareas:")
-
-                    for task in tasks:
-                        print("\nNombre:", task["name"],
-                              "\nPrioridad:", task["priority"],
-                              "\nFecha de entrega:", task["due_date"],
-                              "\nEstatus: ", task_status(task))
-                else:
-                    print("No hay tareas por mostrar")
             elif task_option == "3":
                 task_run = False
 
@@ -238,6 +293,7 @@ while run:
                 print("Entrada no válida")
 
     elif option == "2":
+
         habit_run = True
         while habit_run:
             print("\nAcción a realizar")
@@ -248,49 +304,37 @@ while run:
                 \n4.- Salir \nEscribe 1 2 3 o 4: ")
 
             if habit_option == "1":
+
                 create_habit = "1"
                 while create_habit == "1":
+
                     new_habit = {}
                     new_habit = habit_create(new_habit)
                     habits.append(new_habit)
-                    print("\nHábito creado: ", "\nNombre: ",
-                          new_habit["name"], "\nPrioridad: ",
-                          new_habit["priority"], "Frecuencia meta:",
-                          new_habit["frequency"])
+
                     create_habit = input("\n¿Deseas crear otro hábito? \
                                     \n1.- Sí \n2.- No \n(Escribe el número): ")
 
             elif habit_option == "2":
-                if len(habits) > 0:
-                    print("Habitos: ")
-                    for habit in habits:
-                        print("\nNombre:", habit["name"],
-                              "\nPrioridad:", habit["priority"],
-                              "\nFrecuencia: ", habit["frequency"],
-                              "\nEstatus (días completados): ",
-                              habit["status"])
-                else:
-                    print("No hay hábitos por mostrar")
+                habit_show(habits)
 
             elif habit_option == "3":
-                if len(habits) > 0:
-                    print("¿Qué hábito desdeas modificar?")
+                modify = True
+                while modify:
+                    print("¿Qué hábito deseas modificar?\n")
+
+                    habit_show(habits)
+
+                    habit_modify = input("\nNombre del hábito a modificar: ")
                     for habit in habits:
-                        print("\nNombre:", habit["name"],
-                              "\nPrioridad:", habit["priority"],
-                              "\nFrecuencia: ", habit["frequency"],
-                              "\nEstatus (días completados): ",
-                              habit["status"],)
-                else:
-                    print("No hay hábitos por mostrar")
-                habit_modify = input("\nNombre del hábito a modificar: ")
-                for habit in habits:
-                    if habit["name"] == habit_modify:
-                        habit["status"] += 1
-                        print("Día agregado")
-                        if habit["status"] >= habit["frequency"]:
-                            habit["status"] = "Completado"
-                        print("Nuevo estatus: ", habit["status"])
+                        if habit["name"] == habit_modify:
+                            habit["status"] += 1
+                            print("Día agregado")
+                            if habit["status"] >= habit["frequency"]:
+                                habit["status"] = "Completado"
+                                print("Nuevo estatus: ", habit["status"])
+                            modify = False
+                            break
                     else:
                         print("Hábito no encontrado")
 
@@ -306,4 +350,3 @@ while run:
 
     else:
         print("Entrada no válida, escribe 1 2 o 3")
-
