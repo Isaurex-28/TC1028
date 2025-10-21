@@ -11,6 +11,7 @@ Pensando en que podría utilizar los recursos aprendidos en clase, me dí a la t
 ## **Algoritmo en Pseudocódigo**
 
 Inicio
+
 Generar 2 páginas iniciales que tengan contenidos parecidos más no se relacionen entre sí
 pag_one = "Página de Tareas"
 pag_two = "Página de Habitos"
