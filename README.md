@@ -30,11 +30,17 @@ Interfaz de Hábitos = interfaz con 4 elementos principales:
 
 
 Si usuario selecciona "Interfaz de Tareas"
+  
   Mostrar interfaz de Tareas
+  
   Si el usuario selecciona Crear una tarea
+    
     Correr una función para crear tareas
+  
   Si el usuario selecciona Mostrar Tareas
+    
     Si hay tareas por mostrar
+      
       Mostrar las tareas
       
 Si usuario selecciona "Interfaz de Hábitos"
