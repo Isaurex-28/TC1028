@@ -40,9 +40,13 @@ De igual manera la librería permite obtener la fecha registrada como "hoy" en e
 
 datetime — Basic date and time types. (2019). Python Documentation. https://docs.python.org/3/library/datetime.html#examples-of-usage-date
 
-‌## **Instrucciones**
+## Instrucciones 
+
 Descargar el archivo y correr en la terminal con
-'''python agenda.py'''
+
+```
+python agenda.py
+```
 
 Responder a los menús para realizar las acciones deseadas.
 Podrás regresar y ver tus tareas y hábitos guardados.
