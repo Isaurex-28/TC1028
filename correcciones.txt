@@ -1,0 +1,104 @@
+============= Corrección 1 ===========
+Subcompetencia: Usa herramientas de control de veriosnes, de tal forma que se puedan observar los avances en los commits
+Error original: Los avances se encontraban en archivos separados
+Cambio realizado: Cree un nuevo documento donde fui subiendo mis avances, registrando los cambios en el historial de versiones
+
+============= Corrección 2 ===========
+Subcompetencia: plantea una situación problema que le permite aplicar y demostrar sus conocimientos de programación 
+Error original: El algoritmo almacenado en el README estaba desactualizado, pues se creó antes que el código final
+Cambio realizado: Cree un algoritmo adecuado al programa final.
+
+============ Corrección 3 =============
+Subcompetencia: componente: usa operadores aritméticos de manera eficaz
+Error original: Mi programa no contaba con un uso claro de operadores aritméticos
+Cambio realizado: Cree la función habit_mean, que utiliza las frecuencias de los hábitos para calcular cuantos hábitos se deben cumplir en promedio
+
+def habit_mean(dictionary):
+    """
+    (uso de funciones, uso de matrices, uso de operadores aritméticos)
+    Recibe un diccionario, y utiliza la frecuencia de cada habito
+    para calcular cuantos habitos hay por día en promedio
+    devuelve:  el promedio de habitos por día
+    """
+    sum = 0
+    for habit in dictionary:
+        """
+        Se divide la frecuencia entre 7 para encontrar la probabilidad 
+        de que el hábito deba cumplirse ese día
+        """
+        probability = habit["frequency"] / 7
+        sum = sum + probability
+    return round(sum, 2)
+Lineas de código donde se ve la corrección 181 a 196
+  
+============ Corrección 4 ===========
+Subcompetencia: Separa el código en funciones pequeñas reusables, haciendo uso correcto de paso por parametros y return
+Error original: Tenía secciones de codigo que se repetían dentro del main
+Cambio realizado: Implementé tales secciones de código en 2 funciones nuevas (habit_show y task_show)
+
+def habit_show(matrix):
+    """
+    (uso de funciones, uso de matrices)
+    Llama a una lista de diccionarios, e imprime cada diccionario
+    """
+    if len(matrix) > 0:
+
+        print("\nPromedio de hábitos por día: ",
+              habit_mean(matrix))
+        print("\nHabitos: ")
+
+        for habit in matrix:
+            print("\nNombre:", habit["name"],
+                  "\nPrioridad:", habit["priority"],
+                  "\nFrecuencia: ", habit["frequency"],
+                  "\nEstatus (días completados): ", habit["status"])
+    else:
+        print("No hay hábitos por mostrar")
+
+
+def task_show(matrix):
+    """
+    (uso de funciones, uso de matrices)
+    Llama a una lista de diccionarios, e imprime cada diccionario
+    """
+    if len(matrix) > 0:
+        print("Tareas:")
+
+        for task in matrix:
+            print("\nNombre:", task["name"],
+                  "\nPrioridad:", task["priority"],
+                  "\nFecha de entrega:", task["due_date"],
+                  "\nEstatus: ", task_status(task))
+    else:
+        print("No hay tareas por mostrar")
+
+Lineas de código donde se ve la corrección 220 a 254
+
+
+============ Corrección 5 ===========
+Subcompetencia: aplica estructuras cíclicas para resolver un problema de manera eficiente
+Error original: al modificar un hábito, imprimía "hábito no encontrado" por cada nombre que no fuera el indicado
+Cambio realizado: Modifiqué la estructura cíclica for, y agregué un ciclo while para que se vuelva a empezar la operación en caso de un error al escribir el hábito a modificar
+
+                modify = True
+                while modify:
+                    print("¿Qué hábito deseas modificar?\n")
+
+                    habit_show(habits)
+
+                    habit_modify = input("\nNombre del hábito a modificar: ")
+                    for habit in habits:
+                        if habit["name"] == habit_modify:
+                            habit["status"] += 1
+                            print("Día agregado")
+                            if habit["status"] >= habit["frequency"]:
+                                habit["status"] = "Completado"
+                                print("Nuevo estatus: ", habit["status"])
+                            modify = False
+                            break
+                    else:
+                        print("Hábito no encontrado")
+
+Lineas de código donde se ve la corrección 322 a 339
+
+
