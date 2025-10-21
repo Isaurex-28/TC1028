@@ -9,6 +9,7 @@ ciertas funciones.
 Pensando en que podría utilizar los recursos aprendidos en clase, me dí a la tarea de crear la estructura de lo que en un futuro podría ser mi propia aplicación de agenda semanal, removiendo las funciones que no  me gustan de otras aplicaciones (como los micropagos y suscripciones) y agregando cosas que no he logrado encontrar en otras aplicaciónes como que se reconozca al momento de cumplir la frecuencia de un hábito.
 
 ## **Algoritmo en Pseudocódigo**
+
 Inicio
 Generar 2 páginas iniciales que tengan contenidos parecidos más no se relacionen entre sí
 pag_one = "Página de Tareas"
@@ -25,8 +26,11 @@ interfaz_t = interfaz con 3 elementos principales:
                 * Menú de Proyectos
 
 calendar = Función que obtenga la información de fecha y hora del dispositivo y agregue las tareas correspondientes a tal fecha y hora
+
 hw_list = Menú desplegable que permita crear tareas (con título, materia, tipo, prioridad, fecha de entrega, y descripción) y visualizarlos posteriormente
+
 hb_list = Menú desplegable que permita crear hábitos (con nombre, y frecuencia meta) y administrar si para el dia de hoy se realizó el hábito o su contaparte
+
 project = Menú deplegabble que permita crear proyectos con sus propias tareas (con propiedades igual es al de la lista de tareas) y agregar un progreso modificable establecido por el usuario
 
 Si usuario selecciona "Página Personal"
