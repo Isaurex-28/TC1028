@@ -11,7 +11,6 @@ cumplidos en la semana.
 import datetime
 
 """
-()
 Variable run permitirá que el programa corra infinitamente
 
 Lista PRIORITIES es una constante, que se usará para checar que las
@@ -192,56 +191,25 @@ def habit_create(dictionary):
 """
 ============ Programa Principal ===================
 """
-"""
-(uso de ciclos (while))
-Este primer ciclo permite que haya un menú principal el cual correrá 
-infinitamente, hasta que el usuario indique lo contrario.
-"""
+
 while run:
 
     print("\nSelecciona el Menú")
     option = input("1.- Tareas \n2.- Hábitos \
                     \n3.- Salir \nEscribe 1 2 o 3: ")
-
-    """
-    (uso de condicionales)
-    Acciones que se realizan según la selección en el menú principal
-    """
     if option == "1":
-        """
-        (uso de cilos (while))
-        Se crea un segundo menú, específico para las tareas, que de
-        igual manera corre hasta que el usuario decida detenerlo
-        """
         task_run = True
         while task_run:
             print("\nAcción a realizar")
             task_option = input(
                 "1.- Crear Tarea \n2.- Mostrar Tareas \
                     \n3.- Salir \nEscribe 1 2 o 3: ")
-            """
-            (uso de condicionales)
-            Se utiliza if para verificar la opción seleccionada por el
-            usuario
-            """
 
             if task_option == "1":
                 create_task = "1"
-                """
-                (uso de ciclos (while))
-                Este ciclo while permite crear varias tareas seguidas,
-                ahorrando tener que regresar al menú y seleccionar las
-                opciones repetidas veces.
-                """
+
                 while create_task == "1":
-                    """
-                    (uso de matrices (lista de diccionarios))
-                    Se crea un diccionario vacío.
-                    Se agregan los datos de la nueva tarea con la
-                    función task_create.
-                    Se agrega el diccionario modificado a la lista
-                    tareas, que almacenará todos los diccionarios.
-                    """
+
                     new_task = {}
                     new_task = task_create(new_task)
                     tasks.append(new_task)
@@ -252,17 +220,10 @@ while run:
                         \n1.- Sí \n2.- No \n(Escribe el número): ")
 
             elif task_option == "2":
-                """
-                (uso de condicionales, uso de listas)
-                Utilizando una condicional se verifica si hay algo
-                por mostrar en la lista principal de las tareas.
-                """
+
                 if len(tasks) > 0:
                     print("Tareas:")
-                    """
-                    (uso de listas)
-                    Se imprime cada diccionario, y todas sus llaves
-                    """
+
                     for task in tasks:
                         print("\nNombre:", task["name"],
                               "\nPrioridad:", task["priority"],
@@ -306,7 +267,8 @@ while run:
                         print("\nNombre:", habit["name"],
                               "\nPrioridad:", habit["priority"],
                               "\nFrecuencia: ", habit["frequency"],
-                              "\nEstatus (días completados): ", habit["status"])
+                              "\nEstatus (días completados): ",
+                              habit["status"])
                 else:
                     print("No hay hábitos por mostrar")
 
@@ -317,7 +279,8 @@ while run:
                         print("\nNombre:", habit["name"],
                               "\nPrioridad:", habit["priority"],
                               "\nFrecuencia: ", habit["frequency"],
-                              "\nEstatus (días completados): ", habit["status"],)
+                              "\nEstatus (días completados): ",
+                              habit["status"],)
                 else:
                     print("No hay hábitos por mostrar")
                 habit_modify = input("\nNombre del hábito a modificar: ")
