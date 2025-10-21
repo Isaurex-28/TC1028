@@ -43,16 +43,25 @@ Si usuario selecciona "Interfaz de Tareas"
       
       Mostrar las tareas
       
+
 Si usuario selecciona "Interfaz de Hábitos"
+  
   Mostrar Interfaz de Hábitos
+  
   Si el usuario selecciona Crear un hábito
+  
     Correr una función para crear hábitos
+    
   Si el usuario selecciona Mostrar Hábitos
+  
     Si hay hábitos por mostrar
       Mostrar los hábitos
+      
   Si el usuario selecciona Modificar un hábito
+  
     Si hay hábitos por modificar
       Correr una función para modificar hábitos
+
 
 Si el usuario selecciona "Salir" 
   Terminar el programa
