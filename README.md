@@ -16,11 +16,13 @@ Generar una interfaz inicial que funcione como menú para mostrar otras 2 interf
 "Interfaz de Tareas" e "Interfaz de Habitos"
 
 Interfaz de Tareas = interfaz con 3 elementos principales:
+                
                 * Crear una tarea
                 * Ver las tareas creadas (si es que las hay)
                 * Salir de la interfaz (regresar al menú principal)
 
 Interfaz de Hábitos = interfaz con 4 elementos principales:
+                
                 * Crear un hábito
                 * Ver los hábitos creados
                 * Agregar días cumplidos a un habito
