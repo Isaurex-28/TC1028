@@ -326,6 +326,13 @@ while run:
                     habit_show(habits)
 
                     habit_modify = input("\nNombre del hábito a modificar: ")
+                    """
+                    Utilizo un for else con break para que,
+                    una vez encuentre el nombre indicado,
+                    no se corra la acción del else (Hábito no
+                    encontrado)
+                    """
+                    
                     for habit in habits:
                         if habit["name"] == habit_modify:
                             habit["status"] += 1
